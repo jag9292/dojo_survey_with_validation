@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
+    <style>
+        body {
+            margin: 100px;
+            border: 2px solid black;
+            padding: 20px;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+        .box {
+            display: flex;
+            padding: 10px;
+        }
+        .col-sm-10 {
+            width: 300px;
+            margin-left: 100px;
+        }
+        .textBox {
+            margin: 0px 0px 15px 10px;
+        }
+        .textBox .form-control {
+            height: 100px;
+        }
+        .button .btn-primary{
+            background-color: teal;
+            border: 2px solid black;
+            box-shadow: 2px 2px 0px 0px black;
+            text-align: center;
+        }
+        .button {
+            text-align:end;
+        }
+        .message {
+            border: 2px solid black;
+            color: white;
+            background-color: red;
+            /* margin: 50px 300px; */
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="message">
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <p>{{message}}</p>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </div>
+    
+    <form action='/result' method='POST'>
+        <div class="box">
+            <label for="colFormLabel" class="col-sm-2 col-form-label">Your Name:</label>
+            <div class="col-sm-10">
+            <input type="text" class="form-control" name='name'>
+            </div>
+        </div>
+        <div class="box">
+            <label for="colFormLabel" class="col-sm-2 col-form-label">Dojo Location:</label>
+            <div class="col-sm-10">
+            <select name='location' class="form-select">
+                <option selected></option>
+                <option>Online</option>
+                <option>San Jose</option>
+            </select>
+            </div>
+        </div>
+        <div class="box">
+            <label for="colFormLabel" class="col-sm-2 col-form-label">Favorite Language:</label>
+            <div class="col-sm-10">
+            <select name='language' class="form-select">
+                <option selected></option>
+                <option>Python</option>
+                <option>C++</option>
+            </select>
+            </div>
+        </div>
+        <div class="textBox">
+            <label for="formGroupExampleInput" class="form-label">Comment (Optional):</label>
+            <input type="text" class="form-control" name='comment'>
+        </div>
+        <div class="button">
+            <button type="submit" value='result' class="btn-primary">Submit</button>
+        </div>
+    </form>
+</body>
+</html>
+
